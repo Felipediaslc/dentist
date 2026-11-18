@@ -136,14 +136,15 @@ function ServiceCard({ service }: { service: Service }) {
   );
 }
 
-export default function ServicosPage() {
+export default function Services() {
   return (
     <div>
-      <section id="services" data-header-theme="dark"
-        aria-labelledby="servicos-title"
-        className="relative isolate flex flex-col overflow-hidden bg-[#062b40] lg:h-svh lg:max-h-[900px] lg:min-h-[540px] rounded-t-[32px] lg:rounded-t-[48px] rounded-b-[32px] lg:rounded-b-[48px] "
-      >
-        <div className="absolute inset-0 -z-20">
+      <section id="services"
+  data-header-theme="dark"
+  aria-labelledby="servicos-title"
+  className="relative isolate flex flex-col overflow-hidden bg-[#062b40] rounded-[32px] lg:min-h-[min(100svh,900px)] lg:rounded-[48px]"
+>
+        <div  className="absolute inset-0 -z-20 ">
           <Image
             src="/images/Sorriso.png"
             alt=""

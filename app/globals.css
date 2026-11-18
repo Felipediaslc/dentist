@@ -6,12 +6,12 @@
 }
 
 :root {
-  --header-offset: 112px;
+  --header-offset: 0px;
   scroll-padding-top: var(--header-offset);
 }
 
-html {
-  scroll-behavior: smooth;
+[id] {
+  scroll-margin-top: 0;
 }
 
 body {

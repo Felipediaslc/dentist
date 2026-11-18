@@ -15,7 +15,10 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
   const [lightBackground, setLightBackground] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const pendingSectionRef = useRef<string | null>(null);
 
   useEffect(() => {
     let frameId: number | null = null;
@@ -39,18 +42,28 @@ export default function Header() {
             section !== null
         );
 
-      const reachedSections = availableSections.filter(
-        (section) => section.top <= activationPoint
+      const pendingSection = availableSections.find(
+        (section) => section.target === pendingSectionRef.current
       );
 
-      if (reachedSections.length > 0) {
-        const currentSection = reachedSections.reduce((previous, current) =>
-          current.top > previous.top ? current : previous
+      if (pendingSection && pendingSection.top > activationPoint) {
+        setActiveSection(pendingSection.target);
+      } else {
+        pendingSectionRef.current = null;
+
+        const reachedSections = availableSections.filter(
+          (section) => section.top <= activationPoint
         );
 
-        setActiveSection(currentSection.target);
-      } else if (availableSections.length > 0) {
-        setActiveSection(availableSections[0].target);
+        if (reachedSections.length > 0) {
+          const currentSection = reachedSections.reduce((previous, current) =>
+            current.top > previous.top ? current : previous
+          );
+
+          setActiveSection(currentSection.target);
+        } else if (availableSections.length > 0) {
+          setActiveSection(availableSections[0].target);
+        }
       }
 
       const isAtPageBottom =
@@ -58,10 +71,19 @@ export default function Header() {
         document.documentElement.scrollHeight - 2;
 
       if (isAtPageBottom && availableSections.length > 0) {
+        pendingSectionRef.current = null;
         setActiveSection(
           availableSections[availableSections.length - 1].target
         );
       }
+
+      const hero = document.getElementById("inicio");
+      const header = document.querySelector("header");
+      const headerBottom = header?.getBoundingClientRect().bottom ?? 90;
+
+      setScrolled(
+        !hero || hero.getBoundingClientRect().bottom <= headerBottom
+      );
 
       const themeElements = Array.from(
         document.querySelectorAll<HTMLElement>("[data-header-theme]")
@@ -89,14 +111,24 @@ export default function Header() {
       });
     }
 
+    function handleManualScroll() {
+      pendingSectionRef.current = null;
+    }
+
     updateHeader();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
+    window.addEventListener("wheel", handleManualScroll, { passive: true });
+    window.addEventListener("touchstart", handleManualScroll, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("wheel", handleManualScroll);
+      window.removeEventListener("touchstart", handleManualScroll);
 
       if (frameId !== null) {
         window.cancelAnimationFrame(frameId);
@@ -121,6 +153,11 @@ export default function Header() {
     };
   }, [menuOpen]);
 
+  function handleNavigationClick(target: string) {
+    pendingSectionRef.current = target;
+    setActiveSection(target);
+  }
+
   function closeMenu() {
     setMenuOpen(false);
   }
@@ -132,8 +169,12 @@ export default function Header() {
     : "text-white/85";
 
   const glassStyle = lightBackground
-    ? "border-[#17201f]/10 bg-white/75 shadow-[0_8px_32px_rgba(0,0,0,0.08)]"
-    : "border-white/20 bg-white/[0.16] shadow-[0_8px_32px_rgba(0,0,0,0.10)]";
+    ? "border-transparent bg-[#FFFFFF]/75 shadow-[0_8px_32px_rgba(0,0,0,0.08)]"
+    : "border-transparent bg-[#FFFFFF]/[0.16] shadow-[0_8px_32px_rgba(0,0,0,0.10)]";
+
+  const logoGlassStyle = lightBackground
+    ? "border-transparent bg-white/65 shadow-[0_8px_32px_rgba(0,0,0,0.08)]"
+    : "border-transparent bg-transparent shadow-[0_8px_32px_rgba(0,0,0,0.16)]";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-5 pt-5 sm:px-8 sm:pt-7 lg:px-12">
@@ -142,7 +183,11 @@ export default function Header() {
           href="/"
           aria-label="Idea Odont — página inicial"
           onClick={closeMenu}
-          className={`relative z-10 shrink-0 font-heading text-[1.5rem] font-medium tracking-[-0.04em] transition-colors duration-300 hover:opacity-80 motion-reduce:transition-none sm:text-[1.8rem] ${textColor}`}
+          className={`relative z-10 shrink-0 rounded-full border font-heading text-[1.5rem] font-medium tracking-[-0.04em] transition-all duration-300 hover:opacity-80 motion-reduce:transition-none sm:text-[1.8rem] ${
+            scrolled && activeSection !== "services"
+              ? `-mx-3 -my-2 px-3 py-2 backdrop-blur-2xl ${logoGlassStyle}`
+              : "border-transparent bg-transparent px-0 py-0 shadow-none backdrop-blur-0"
+          } ${textColor}`}
         >
           Idea<span className="font-normal text-sky-500">Odont</span>
           <span className="ml-0.5 inline-block align-top text-[1.1rem] font-medium leading-none tracking-normal">
@@ -161,6 +206,7 @@ export default function Header() {
               <Link
                 key={item.target}
                 href={item.href}
+                onClick={() => handleNavigationClick(item.target)}
                 aria-current={active ? "location" : undefined}
                 className={`whitespace-nowrap rounded-full px-5 py-3 text-[14px] font-medium transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 motion-reduce:transition-none ${
                   active
@@ -207,8 +253,8 @@ export default function Header() {
             onClick={() => setMenuOpen((open) => !open)}
             className={`inline-flex h-[46px] w-[46px] items-center justify-center rounded-full border shadow-[0_5px_20px_rgba(0,0,0,0.10)] backdrop-blur-xl transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 motion-reduce:transition-none lg:hidden ${
               lightBackground
-                ? "border-[#17201f]/15 bg-white/75 text-[#17201f] hover:bg-white"
-                : "border-white/25 bg-white/[0.16] text-white hover:bg-white/25"
+                ? "border-none bg-[#FFFFFF]/75 text-[#17201f] hover:bg-[#FFFFFF]"
+                : "border-none bg-[#FFFFFF]/[0.16] text-[#FFFFFF] hover:bg-[#FFFFFF]/25"
             }`}
           >
             {menuOpen ? (
@@ -263,11 +309,14 @@ export default function Header() {
                   href={item.href}
                   aria-current={active ? "location" : undefined}
                   tabIndex={menuOpen ? 0 : -1}
-                  onClick={closeMenu}
+                  onClick={() => {
+                    handleNavigationClick(item.target);
+                    closeMenu();
+                  }}
                   className={`rounded-xl px-4 py-3 text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400 motion-reduce:transition-none ${
                     active
-                      ? "bg-white text-[#17201f]"
-                      : "text-white hover:bg-white/10"
+                      ? "bg-[#FFFFFF] text-[#17201f]"
+                      : "text-[#FFFFFF] hover:bg-[#FFFFFF]/10"
                   }`}
                 >
                   {item.label}

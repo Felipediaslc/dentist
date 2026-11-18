@@ -118,10 +118,10 @@ const wrap = "mx-auto w-full max-w-[1320px] px-6 sm:px-10 lg:px-16";
 
 export default function About() {
   return (
-    <div  id="about" data-header-theme="dark" className="mx-auto w-full max-w-[1920px] overflow-hidden text-[#FFFFFFFF]">
+    <div   data-header-theme="dark" className="mx-auto w-full max-w-[1920px] overflow-hidden text-[#FFFFFFFF]">
      
       <div className="bg-[#FFFFFFFF]">
-<section className="relative isolate min-h-[500px] overflow-hidden rounded-t-[32px] bg-[#061116] lg:min-h-[clamp(500px,41vw,787px)] lg:rounded-t-[48px]">
+<section id="about" className="scroll-mt relative isolate min-h-[500px] overflow-hidden rounded-t-[32px] bg-[#061116] lg:min-h-[clamp(500px,41vw,787px)] lg:rounded-t-[48px]">
         {/* Foto full-bleed até a borda direita, com borda curva */}
         <div
           className="absolute inset-y-0 right-0 -z-20 w-full lg:w-[52%] lg:[clip-path:ellipse(100%_150%_at_100%_50%)] lg:[-webkit-mask-image:linear-gradient(90deg,transparent_0%,#000_22%)] lg:[mask-image:linear-gradient(90deg,transparent_0%,#000_22%)]"
