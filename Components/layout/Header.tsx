@@ -8,7 +8,7 @@ const navigation = [
   { label: "Sobre", href: "#about", target: "about" },
   { label: "Tratamentos", href: "#tratamentos", target: "tratamentos" },
   { label: "Serviços", href: "#services", target: "services" },
-  { label: "Agendamento", href: "#appointment", target: "appointment" },
+  { label: "Agendamento", href: "#agendamentos", target: "agendamentos" },
 ];
 
 export default function Header() {
@@ -189,7 +189,7 @@ export default function Header() {
               : "border-transparent bg-transparent px-0 py-0 shadow-none backdrop-blur-0"
           } ${textColor}`}
         >
-          Idea<span className="font-normal text-sky-500">Odont</span>
+          Idea<span className="font-normal text-[#08bde5]">Odont</span>
           <span className="ml-0.5 inline-block align-top text-[1.1rem] font-medium leading-none tracking-normal">
             ®
           </span>

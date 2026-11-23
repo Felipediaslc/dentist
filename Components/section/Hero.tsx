@@ -24,7 +24,7 @@ export default function Hero() {
   return (
     <section id="inicio" data-header-theme="dark"
       aria-labelledby="hero-title"
-      className="relative isolate h-[calc(100svh-16px)] min-h-[560px] max-h-[960px] overflow-hidden rounded-[24px] bg-[#17201f] sm:h-[calc(100svh-32px)] sm:min-h-[680px] sm:rounded-[36px] lg:rounded-[40px]"
+      className="relative isolate h-[calc(100svh-16px)] min-h-[560px] max-h-[960px] overflow-hidden rounded-[24px] bg-[#17201f] sm:h-[calc(100svh-32px)] sm:min-h-[680px] sm:rounded-[36px] lg:rounded-[40px] 2xl:h-[calc(100svh-1px)]  min-[1700px]:h-[57vw]! min-[1700px]:max-h-none!"
     >
       <Image
         src="/images/image-HERO.jpg"
@@ -43,9 +43,9 @@ export default function Hero() {
 
       <div className="absolute inset-0 -z-10 bg-[rgba(8,17,19,0.28)] sm:hidden" />
 
-      <div className="mx-auto flex min-h-full w-full max-w-[1600px] items-center px-6 pb-16 pt-[4.5rem] sm:px-12 sm:py-32 lg:px-20 xl:px-24">
-        <div className="w-full max-w-[1120px] -translate-y-3 text-white sm:translate-y-0">
-          <p className="mb-5 font-heading text-[11px] font-semibold uppercase tracking-[0.2em] text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.45)] sm:mb-8 sm:text-xs sm:tracking-[0.22em] sm:[text-shadow:none] lg:text-sm">
+      <div className="mx-auto flex min-h-full w-full max-w-[1600px] items-center px-6 pb-16 pt-[4.5rem] sm:px-12 sm:py-32 lg:px-20 xl:px-24 min-[1700px]:max-w-none! min-[1700px]:px-[6.25vw]!">
+        <div className="w-full max-w-[1120px] -translate-y-3 text-white sm:translate-y-0 min-[1700px]:max-w-[72.9vw]!">
+          <p className="mb-5 font-heading text-[11px] font-semibold uppercase tracking-[0.2em] text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.45)] sm:mb-8 sm:text-xs sm:tracking-[0.22em] sm:[text-shadow:none] lg:text-sm min-[1700px]:mb-[2.083vw]! min-[1700px]:text-[0.911vw]!">
             Seu sorriso,
             <span className="text-sky-300 sm:text-sky-400">
               {" "}nossa prioridade
@@ -54,7 +54,7 @@ export default function Hero() {
 
           <h1
             id="hero-title"
-            className="max-w-[1120px] text-balance font-heading text-[clamp(2.4rem,7.6vw,5.25rem)] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-[clamp(3.25rem,5vw,5.25rem)] sm:leading-[1]"
+            className="max-w-[1120px] text-balance font-heading text-[clamp(2.4rem,7.6vw,5.25rem)] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-[clamp(3.25rem,5vw,5.25rem)] sm:leading-[1] min-[1700px]:max-w-[72.9vw]! min-[1700px]:text-[5vw]!"
           >
             <span className="block">
               Idea{" "}
@@ -72,7 +72,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="mt-5 max-w-[560px] text-pretty text-[13px] font-normal leading-[1.8] tracking-normal text-white/90 sm:mt-8 sm:text-base lg:text-lg lg:leading-[1.8]">
+          <p className="mt-5 max-w-[560px] text-pretty text-[13px] font-normal leading-[1.8] tracking-normal text-white/90 sm:mt-8 sm:text-base lg:text-lg lg:leading-[1.8] min-[1700px]:mt-[2.083vw]! min-[1700px]:max-w-[36.46vw]! min-[1700px]:text-[1.172vw]!">
             <span className="sm:block">
               Experimente um cuidado odontológico pensado para você.
             </span>{" "}
@@ -86,7 +86,7 @@ export default function Hero() {
 
           <Link
             href="#appointment"
-            className="group mt-6 inline-flex min-h-[56px] w-full max-w-[340px] items-center justify-center gap-5 rounded-full bg-white px-8 text-[14px] font-semibold text-[#17201f] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f3faff] hover:shadow-[0_14px_36px_rgba(0,0,0,0.20)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400 motion-reduce:transition-none sm:mt-10 sm:min-h-[60px] sm:w-auto sm:min-w-[250px] sm:text-[15px]"
+            className="group mt-6 inline-flex min-h-[56px] w-full max-w-[340px] items-center justify-center gap-5 rounded-full bg-white px-8 text-[14px] font-semibold text-[#17201f] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f3faff] hover:shadow-[0_14px_36px_rgba(0,0,0,0.20)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400 motion-reduce:transition-none sm:mt-10 sm:min-h-[60px] sm:w-auto sm:min-w-[250px] sm:text-[15px] min-[1700px]:mt-[2.604vw]! min-[1700px]:min-h-[3.906vw]! min-[1700px]:min-w-[16.28vw]! min-[1700px]:gap-[1.302vw]! min-[1700px]:px-[2.083vw]! min-[1700px]:text-[0.977vw]!"
           >
             Agendar consulta
 
@@ -94,7 +94,7 @@ export default function Hero() {
               aria-hidden="true"
               viewBox="0 0 24 24"
               fill="none"
-              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
+              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none min-[1700px]:size-[1.302vw]!"
             >
               <path
                 d="M5 12h14m-6-6 6 6-6 6"

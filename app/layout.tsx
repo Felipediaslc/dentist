@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import Header from "@/Components/layout/Header";
+import Footer from "@/Components/layout/Footer";
 import "./globals.css";
 import type { ReactNode } from "react";
 
@@ -35,6 +36,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col font-sans">
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
