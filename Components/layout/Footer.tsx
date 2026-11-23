@@ -42,7 +42,7 @@ function ArrowIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
       strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
-      aria-hidden="true" className="size-4">
+      aria-hidden="true" className="size-4 shrink-0">
       <path d="M5 12h14M12 5l7 7-7 7" />
     </svg>
   );
@@ -61,10 +61,10 @@ export default function Footer() {
         className="pointer-events-none absolute -right-28 -top-28 size-[360px] rounded-full border border-[#08bde5]/20"
       />
 
-      <div className="relative mx-auto grid w-full max-w-[1800px] gap-12 px-5 pt-28 pb-14 sm:px-8 sm:py-16 lg:grid-cols-[1.2fr_0.65fr_1.35fr] lg:gap-12 lg:px-[5%] lg:py-20">
+      <div className="relative mx-auto grid w-full max-w-[1800px] grid-cols-2 gap-x-6 gap-y-12 px-5 pt-28 pb-14 sm:gap-12 sm:px-8 sm:py-16 lg:grid-cols-[1.2fr_0.65fr_1.35fr] lg:gap-12 lg:px-[5%] lg:py-20">
 
        
-        <div>
+        <div className="col-span-2 lg:col-span-1">
           <Link href="#inicio" aria-label="Idea Odont - Início"
             className="inline-block text-[34px] font-light tracking-[-0.06em] sm:text-[40px]">
             Idea<span className="text-[#08bde5]">Odont</span>
@@ -129,13 +129,13 @@ export default function Footer() {
           <div className="mt-6 space-y-5 text-[15px] text-white/70">
             <Link
               href="#agendamentos"
-              className="flex items-center gap-4 transition-colors hover:text-[#08bde5]"
+              className="flex items-center gap-3 transition-colors hover:text-[#08bde5] sm:gap-4"
             >
               <ArrowIcon />
               <span>Agende sua consulta</span>
             </Link>
 
-            <p className="flex items-start gap-4">
+            <p className="flex items-start gap-3 sm:gap-4">
               <span className="text-[#08bde5]">●</span>
               <span>Entre em contato com nossa equipe.</span>
             </p>
