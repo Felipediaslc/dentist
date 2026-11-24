@@ -1,7 +1,7 @@
 import Hero from "@/Components/section/Hero";
 import About from "@/Components/section/About";
 import Treatments from "@/Components/section/Treatments";
-import Service from "@/Components/section/Service";
+
 import Agendamento from "@/Components/section/Agendamento";
 
 export default function Home() {
@@ -31,13 +31,7 @@ export default function Home() {
         <Treatments />
       </div>
 
-      <div
-        id="services"
-        data-nav-section="services"
-        data-header-theme="dark"
-      >
-        <Service />
-      </div>
+     
       <div
         id="agendamentos"
         data-nav-section="agendamentos"

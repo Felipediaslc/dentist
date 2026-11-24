@@ -7,7 +7,7 @@ const navigation = [
   { label: "Início", href: "#inicio", target: "inicio" },
   { label: "Sobre", href: "#about", target: "about" },
   { label: "Tratamentos", href: "#tratamentos", target: "tratamentos" },
-  { label: "Serviços", href: "#services", target: "services" },
+ 
   { label: "Agendamento", href: "#agendamentos", target: "agendamentos" },
 ];
 

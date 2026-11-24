@@ -4,7 +4,7 @@ const navigation = [
   { label: "Início", href: "#inicio" },
   { label: "Sobre", href: "#sobre" },
   { label: "Tratamentos", href: "#tratamentos" },
-  { label: "Serviços", href: "#servicos" },
+ 
   { label: "Agendamento", href: "#agendamentos" },
 ];
 
